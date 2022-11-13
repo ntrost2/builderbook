@@ -14,7 +14,7 @@ const styleBuyButton = {
 };
 
 const dev = process.env.NODE_ENV !== 'production';
-const port = process.env.NEXT_PUBLIC_PORT || 8000;
+const port = process.env.PORT || 8000;
 const ROOT_URL = `http://localhost:${port}`;
 
 const stripePromise = loadStripe(
@@ -70,7 +70,7 @@ class BuyButton extends React.Component {
         redirectUrl: document.location.pathname,
       });
 
-      // When the customer clicks on the button, redirect them to Checkout.
+      // When the customer clicks on the button, redirect them to Checkout page hosted by Stripe.
       const stripe = await stripePromise;
       const { error } = await stripe.redirectToCheckout({ sessionId });
 
